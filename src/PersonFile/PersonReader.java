@@ -84,7 +84,7 @@ public class PersonReader
         for(int i = 0; i < arrayList.size(); i++)
         {
             Person p = arrayList.get(i);
-            System.out.println(String.format("%s %9s %11s %5s %5d", p.id, p.firstName, p.lastName, p.title, p.yearOfBirth));
+            System.out.println(String.format("%s %9s %11s %5s %5d", p.ID, p.firstName, p.lastName, p.title, p.YOB));
         }
     }
 

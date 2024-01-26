@@ -69,11 +69,11 @@ public class PersonReader
             System.out.println("Invalid line, cannot parse data for person");
             return null;
         }
-        person.id = arr[0];
+        person.ID = arr[0];
         person.firstName = arr[1];
         person.lastName = arr[2];
         person.title = arr[3];
-        person.yearOfBirth = Integer.parseInt(arr[4]);
+        person.YOB = Integer.parseInt(arr[4]);
         return person;
     }
     public static void PrintPeople(ArrayList<Person> arrayList)

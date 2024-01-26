@@ -18,11 +18,11 @@ public class PersonGenerator
         while(true)
         {
             Person newPerson = new Person();
-            newPerson.id = SafeInput.getRegExString(in, "Please Enter your persons ID", "[0-9]+");
+            newPerson.ID = SafeInput.getRegExString(in, "Please Enter your persons ID", "[0-9]+");
             newPerson.firstName = SafeInput.getRegExString(in, "Please Enter your persons first name", "[a-zA-Z]+");
             newPerson.lastName = SafeInput.getRegExString(in, "Please Enter your persons last name", "[a-zA-Z]+");
             newPerson.title = SafeInput.getRegExString(in, "Please Enter your persons title", "[a-zA-Z]+");
-            newPerson.yearOfBirth = SafeInput.getInt(in, "Please Enter your persons Year of Birth");
+            newPerson.YOB = SafeInput.getInt(in, "Please Enter your persons Year of Birth");
             people.add((newPerson));
             System.out.println("Finished collecting input for " + newPerson.firstName + " " + newPerson.lastName);
             if(!SafeInput.getYNConfirm(in, "Would you like to add another person?"))

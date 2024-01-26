@@ -4,11 +4,11 @@ import java.time.Year;
 
 public class Person
 {
-    String id;
+    String ID;
     String firstName;
     String lastName;
     String title;
-    int yearOfBirth;
+    int YOB;
 
     public String fullName()
     {
@@ -20,16 +20,16 @@ public class Person
     }
     public String getAge()
     {
-        return Integer.toString(Year.now().getValue() - yearOfBirth);
+        return Integer.toString(Year.now().getValue() - YOB);
     }
     public String getAge(int year)
     {
-        return Integer.toString(year - yearOfBirth);
+        return Integer.toString(year - YOB);
     }
 
     public String toCSVDataRecord()
     {
-        return id + "," + firstName + "," + lastName + "," + title + "," + Integer.toString(yearOfBirth);
+        return ID + "," + firstName + "," + lastName + "," + title + "," + YOB;
     }
 
 }

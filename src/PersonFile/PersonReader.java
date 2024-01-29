@@ -1,92 +1,33 @@
 package PersonFile;
 
-import javax.swing.*;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
 
 public class PersonReader
 {
     public static void main(String[] args)
     {
         JFileChooser chooser = new JFileChooser();
-        Scanner inFile;
-        String line;
-        Path target = new File(System.getProperty("user.dir")).toPath();
-        target = target.resolve("src");
-        chooser.setCurrentDirectory(target.toFile());
-
-        try
-        {
-
-            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-            {
-                target = chooser.getSelectedFile().toPath();
-
-                inFile = new Scanner(target);
-
-                ArrayList<Person> people = new ArrayList<Person>();
-
-                while (inFile.hasNextLine())
-                {
-                    Person parsed = ParsePersonData(inFile.nextLine());
-                    if(parsed == null)
-                    {
-                        System.out.println("Cannot continue parsing");
-                        break;
-                    }
-                    people.add(parsed);
+        System.out.println("Please select the Person file.");
+        int result = chooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = chooser.getSelectedFile();
+            try (BufferedReader reader = new BufferedReader(new FileReader(selectedFile))) {
+                String line;
+                System.out.println(String.format("%-15s%-15s%-15s%-10s%-10s", "ID#", "Firstname", "Lastname", "Title", "YOB"));
+                System.out.println("===============================================================");
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(", ");
+                    System.out.println(String.format("%-15s%-15s%-15s%-10s%-10s", parts[0].trim(), parts[1].trim(), parts[2].trim(), parts[3].trim(), parts[4].trim()));
                 }
-
-                PrintPeople(people);
-
-                inFile.close();
-            } else
-            {
-                System.out.println("Sorry, you must select a file! Terminating!");
-                System.exit(0);
+            } catch (Exception e) {
+                System.out.println("Error reading file: " + e.getMessage());
             }
-        } catch (FileNotFoundException e)
-        {
-            System.out.println("File Not Found Error");
-            e.printStackTrace();
-        } catch (IOException e)
-        {
-            System.out.println("IOException Error");
-            e.printStackTrace();
+        } else {
+            System.out.println("File selection was canceled.");
         }
-    }
 
-    public static Person ParsePersonData(String line)
-    {
-        Person person = new Person();
-        String[] arr = line.split(",");
-        if(arr.length != 5)
-        {
-            System.out.println("Invalid line, cannot parse data for person");
-            return null;
-        }
-        person.ID = arr[0];
-        person.firstName = arr[1];
-        person.lastName = arr[2];
-        person.title = arr[3];
-        person.YOB = Integer.parseInt(arr[4]);
-        return person;
     }
-    public static void PrintPeople(ArrayList<Person> arrayList)
-    {
-        System.out.println(String.format("%s %12s %11s %5s %5s", "#ID", "Firstname", "Lastname", "Title", "YOB"));
-        System.out.println(String.format("%0" + 40 + "d", 0).replace("0", "="));
-        System.out.println();
-        for(int i = 0; i < arrayList.size(); i++)
-        {
-            Person p = arrayList.get(i);
-            System.out.println(String.format("%s %9s %11s %5s %5d", p.ID, p.firstName, p.lastName, p.title, p.YOB));
-        }
-    }
-
-
 }

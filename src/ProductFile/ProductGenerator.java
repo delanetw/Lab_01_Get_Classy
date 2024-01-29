@@ -19,10 +19,10 @@ public class ProductGenerator
         while(true)
         {
             Product newProduct = new Product();
-            newProduct.name = SafeInput.getRegExString(in, "Please Enter a product name", "[a-zA-Z]+");
-            newProduct.description = SafeInput.getRegExString(in, "Please Enter a product description", "[a-zA-Z ’]+");
-            newProduct.ID = SafeInput.getRegExString(in, "Please Enter a product ID", "[0-9]+");
-            newProduct.cost = SafeInput.getDouble(in, "Please Enter the product cost");
+            newProduct.ID = SafeInput.getRegExString(in, "Enter ID (a String)", "\\d+");
+            newProduct.name = SafeInput.getNonZeroLenString(in, "Enter the product name");
+            newProduct.description = SafeInput.getNonZeroLenString(in, "Enter the product description");
+            newProduct.cost = SafeInput.getDouble(in, "Enter the product price");
             products.add((newProduct));
             System.out.println("Finished collecting input for " + newProduct.name);
             if(!SafeInput.getYNConfirm(in, "Would you like to add another product?"))

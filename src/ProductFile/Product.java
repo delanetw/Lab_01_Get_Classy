@@ -9,7 +9,7 @@ public class Product
 
     public String toCSVDataRecord()
     {
-        return name + "," + description + "," + ID + "," + cost;
+        return ID + ", " + name + ", " + description + ", " + cost;
     }
 
 }

@@ -29,7 +29,7 @@ public class Person
 
     public String toCSVDataRecord()
     {
-        return ID + "," + firstName + "," + lastName + "," + title + "," + YOB;
+        return ID + ", " + firstName + ", " + lastName + ", " + title + ", " + YOB;
     }
 
 }

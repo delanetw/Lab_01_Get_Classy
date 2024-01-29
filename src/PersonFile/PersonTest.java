@@ -5,7 +5,7 @@ public class PersonTest
     public static void main(String[] args)
     {
         Person person = new Person();
-        person.ID = "0001";
+        person.id = "0001";
         person.firstName = "Te";
         person.lastName = "st";
         person.title = "Mr.";
